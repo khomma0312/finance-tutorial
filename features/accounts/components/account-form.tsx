@@ -38,7 +38,7 @@ export const AccountForm = ({
 }: Props) => {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues,
+    defaultValues, // defaultValues are cached. (https://react-hook-form.com/docs/useform#defaultValues)
   });
 
   const onValid = (values: FormValues) => {
