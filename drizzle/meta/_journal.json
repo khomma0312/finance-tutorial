@@ -15,6 +15,13 @@
       "when": 1725546048431,
       "tag": "0001_overjoyed_falcon",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1726443598052,
+      "tag": "0002_bouncy_hiroim",
+      "breakpoints": true
     }
   ]
 }

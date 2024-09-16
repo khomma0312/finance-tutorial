@@ -72,11 +72,13 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  console.log(table.getFilteredSelectedRowModel().rows.length);
+
   return (
     <div>
       <ConfirmDialog />
-      {!!filterKey && (
-        <div className="flex items-center py-4">
+      <div className="flex items-center py-4">
+        {!!filterKey && (
           <Input
             placeholder={`Filter ${filterKey}...`}
             value={
@@ -87,27 +89,27 @@ export function DataTable<TData, TValue>({
             }
             className="max-w-sm"
           />
-          {table.getFilteredSelectedRowModel().rows.length > 0 && (
-            <Button
-              disabled={disabled}
-              variant="outline"
-              size="sm"
-              className="ml-auto font-normal text-xs"
-              onClick={async () => {
-                const ok = await confirm();
+        )}
+        {table.getFilteredSelectedRowModel().rows.length > 0 && (
+          <Button
+            disabled={disabled}
+            variant="outline"
+            size="sm"
+            className="ml-auto font-normal text-xs"
+            onClick={async () => {
+              const ok = await confirm();
 
-                if (ok) {
-                  onDelete(table.getFilteredSelectedRowModel().rows);
-                  table.resetRowSelection();
-                }
-              }}
-            >
-              <Trash className="size-4 mr-2" />
-              Delete ({table.getFilteredSelectedRowModel().rows.length})
-            </Button>
-          )}
-        </div>
-      )}
+              if (ok) {
+                onDelete(table.getFilteredSelectedRowModel().rows);
+                table.resetRowSelection();
+              }
+            }}
+          >
+            <Trash className="size-4 mr-2" />
+            Delete ({table.getFilteredSelectedRowModel().rows.length})
+          </Button>
+        )}
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
