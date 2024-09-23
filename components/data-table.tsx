@@ -72,8 +72,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  console.log(table.getFilteredSelectedRowModel().rows.length);
-
   return (
     <div>
       <ConfirmDialog />

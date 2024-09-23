@@ -7,7 +7,7 @@ import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
 import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions";
 import { useGetTransactions } from "@/features/transactions/api/use-get-transactions";
-import { columns } from "../accounts/columns";
+import { columns } from "./columns";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const TransactionsPage = () => {
@@ -16,7 +16,8 @@ const TransactionsPage = () => {
   const transactionsQuery = useGetTransactions();
   const transactions = transactionsQuery.data || [];
 
-  const isDisabled = transactionsQuery.isLoading || deleteTransactions.isPending;
+  const isDisabled =
+    transactionsQuery.isLoading || deleteTransactions.isPending;
 
   if (transactionsQuery.isLoading) {
     return (
@@ -39,7 +40,9 @@ const TransactionsPage = () => {
     <div className="max-w-screen-xl mx-auto w-full pb-10 -mt-24">
       <Card className="border-none drop-shadow-sm">
         <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
-          <CardTitle className="text-xl line-clamp-1">Transaction History</CardTitle>
+          <CardTitle className="text-xl line-clamp-1">
+            Transaction History
+          </CardTitle>
           <Button onClick={onOpen} size="sm">
             <Plus className="mr-2 size-4" />
             Add new
@@ -49,7 +52,7 @@ const TransactionsPage = () => {
           <DataTable
             columns={columns}
             data={transactions}
-            filterKey="name"
+            filterKey="payee"
             onDelete={(rows) => {
               const ids = rows.map((row) => row.original.id);
               deleteTransactions.mutate({ ids });
