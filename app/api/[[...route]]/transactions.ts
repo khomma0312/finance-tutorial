@@ -169,6 +169,8 @@ const app = new Hono()
         .values(valuesWithId)
         .returning();
 
+      console.log(data);
+
       return c.json({ data });
     }
   )
