@@ -29,8 +29,6 @@ const app = new Hono()
       const auth = getAuth(c);
       const { from, to, accountId } = c.req.valid("query");
 
-      console.log(accountId);
-
       if (!auth?.userId) {
         return c.json({ error: "Unauthorized" }, 401);
       }
@@ -168,8 +166,6 @@ const app = new Hono()
         .insert(transactions)
         .values(valuesWithId)
         .returning();
-
-      console.log(data);
 
       return c.json({ data });
     }
